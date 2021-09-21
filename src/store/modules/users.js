@@ -53,9 +53,9 @@ const actions = {
       commit("setUserError", "Unfortunately there is already an user with this username. Please, change the username and try again.");
     }
   },
-  logOut({ commit }) {
-    const updatedUser = { ...this.state.currentUser, favorites: this.state.favorites };
-    api.put(`users/${this.state.currentUser.id}`, updatedUser).then(() => {
+  logOut({ commit, rootState }) {
+    const updatedUser = { ...state.currentUser, favorites: rootState.albums.favorites || [] };
+    api.put(`users/${state.currentUser.id}`, updatedUser).then(() => {
       commit("setCurrentUser", null);
       router.push("/");
     });
@@ -63,6 +63,7 @@ const actions = {
 };
 
 const getters = {
+  currentUser: (state) => state.currentUser,
   isLoggedIn: (state) => !!state.currentUser,
   errorMessage: (state) => state.userError,
 };
