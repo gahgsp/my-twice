@@ -27,7 +27,9 @@
         </div>
       </div>
     </nav>
-    <router-view />
+    <transition name="slide-fade" mode="out-in">
+      <router-view />
+    </transition>
   </div>
 </template>
 
@@ -58,6 +60,7 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+
 #nav {
   padding: 30px;
   a {
@@ -67,5 +70,19 @@ export default {
       color: #42b983;
     }
   }
+}
+
+.slide-fade-enter-active {
+  transition: all 0.2s ease;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(15px);
+  opacity: 0;
 }
 </style>
