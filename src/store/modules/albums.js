@@ -1,4 +1,4 @@
-import album from "@/services/album.js";
+import album from '@/services/album.js';
 
 const state = {
   albums: [],
@@ -13,7 +13,9 @@ const mutations = {
     state.favorites.push(album);
   },
   removeFavorite(state, album) {
-    state.favorites = state.favorites.filter((favoriteAlbum) => favoriteAlbum.collectionId !== album.collectionId);
+    state.favorites = state.favorites.filter(
+      (favoriteAlbum) => favoriteAlbum.collectionId !== album.collectionId
+    );
   },
   setFavorites(state, albums) {
     state.favorites = albums;
@@ -22,18 +24,19 @@ const mutations = {
 
 const actions = {
   async loadAlbums({ commit }) {
-    album.get("lookup?id=1203816887&entity=album").then((response) => {
-      commit(
-        "setAlbums",
-        response.data.results.filter((result) => result.collectionType === "Album")
-      );
-    });
+    const {
+      data: { results: albums },
+    } = await album.get('lookup?id=1203816887&entity=album');
+    commit(
+      'setAlbums',
+      albums.filter((album) => album.collectionType === 'Album')
+    );
   },
   addFavorite({ commit }, album) {
-    commit("setFavorite", album);
+    commit('setFavorite', album);
   },
   removeFavorite({ commit }, album) {
-    commit("removeFavorite", album);
+    commit('removeFavorite', album);
   },
 };
 
