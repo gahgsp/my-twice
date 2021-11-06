@@ -18,7 +18,7 @@
         <p><strong>Tracks</strong>: {{ album.trackCount }}</p>
         <p>
           <strong>Release Data</strong>:
-          {{ formatReleaseDate(album.releaseDate) }}
+          {{ album.releaseDate | localizeDate }}
         </p>
       </div>
     </div>
@@ -71,6 +71,12 @@ export default {
     HeartBrokenIcon,
     HeartIcon,
   },
+  filters: {
+    localizeDate: (value) => {
+      if (!value) return '';
+      return moment(value).format('DD.MM.YYYY');
+    },
+  },
   methods: {
     ...mapActions({
       addNewFavoriteAlbum: 'addFavorite',
@@ -85,9 +91,6 @@ export default {
     },
     onRemoveFavorite(album) {
       this.removeFavoriteAlbum(album);
-    },
-    formatReleaseDate(releaseDate) {
-      return moment(releaseDate).format('DD.MM.YYYY');
     },
   },
 };
