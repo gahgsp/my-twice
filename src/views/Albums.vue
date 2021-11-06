@@ -5,12 +5,16 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import { mapGetters } from 'vuex';
 import AlbumList from '@/components/Album/AlbumList.vue';
 
 export default {
   components: {
     AlbumList,
+  },
+  created() {
+    this.loadAllAlbums();
   },
   computed: {
     ...mapGetters({
@@ -25,6 +29,11 @@ export default {
           )
       );
     },
+  },
+  methods: {
+    ...mapActions({
+      loadAllAlbums: 'loadAlbums',
+    }),
   },
 };
 </script>

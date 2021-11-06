@@ -38,9 +38,6 @@ import { mapActions } from 'vuex';
 import { mapGetters } from 'vuex';
 export default {
   name: 'app',
-  created() {
-    this.loadAllAlbums();
-  },
   computed: {
     ...mapGetters({
       isUserLoggedIn: 'isLoggedIn',
@@ -51,7 +48,6 @@ export default {
   },
   methods: {
     ...mapActions({
-      loadAllAlbums: 'loadAlbums',
       logOutUser: 'logOut',
     }),
     logout() {
