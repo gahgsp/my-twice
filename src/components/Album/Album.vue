@@ -51,7 +51,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
 import moment from 'moment';
 import HeartIcon from 'vue-material-design-icons/Heart.vue';
 import HeartBrokenIcon from 'vue-material-design-icons/HeartBroken.vue';
@@ -78,19 +77,14 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      addNewFavoriteAlbum: 'addFavorite',
-      removeFavoriteAlbum: 'removeFavorite',
-    }),
     buildImage(album) {
       return album.artworkUrl100.replace('100x100bb', '1000x1000bb');
     },
     onFavorite(album) {
-      this.addNewFavoriteAlbum(album);
-      this.$router.push('/favorites');
+      this.$emit('add-favorite', album);
     },
     onRemoveFavorite(album) {
-      this.removeFavoriteAlbum(album);
+      this.$emit('remove-favorite', album);
     },
   },
 };
