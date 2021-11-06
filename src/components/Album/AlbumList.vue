@@ -31,7 +31,6 @@ export default {
   },
   methods: {
     ...mapActions({
-      loadAllAlbums: 'loadAlbums',
       addNewFavoriteAlbum: 'addFavorite',
       removeFavoriteAlbum: 'removeFavorite',
     }),
