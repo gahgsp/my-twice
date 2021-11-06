@@ -51,29 +51,38 @@
 </template>
 
 <script>
-import moment from "moment";
-import HeartIcon from "vue-material-design-icons/Heart.vue";
-import HeartBrokenIcon from "vue-material-design-icons/HeartBroken.vue";
+import moment from 'moment';
+import HeartIcon from 'vue-material-design-icons/Heart.vue';
+import HeartBrokenIcon from 'vue-material-design-icons/HeartBroken.vue';
 
 export default {
-  props: ["album", "favorite"],
+  props: {
+    album: {
+      type: Object,
+      required: true,
+    },
+    favorite: {
+      type: Boolean,
+      default: false,
+    },
+  },
   components: {
     HeartBrokenIcon,
     HeartIcon,
   },
   methods: {
     buildImage(album) {
-      return album.artworkUrl100.replace("100x100bb", "1000x1000bb");
+      return album.artworkUrl100.replace('100x100bb', '1000x1000bb');
     },
     onFavorite(album) {
-      this.$store.dispatch("addFavorite", album);
-      this.$router.push("/favorites");
+      this.$store.dispatch('addFavorite', album);
+      this.$router.push('/favorites');
     },
     onRemoveFavorite(album) {
-      this.$store.dispatch("removeFavorite", album);
+      this.$store.dispatch('removeFavorite', album);
     },
     formatReleaseDate(releaseDate) {
-      return moment(releaseDate).format("DD.MM.YYYY");
+      return moment(releaseDate).format('DD.MM.YYYY');
     },
   },
 };

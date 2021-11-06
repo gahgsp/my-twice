@@ -7,14 +7,22 @@
 </template>
 
 <script>
-import Album from "./Album.vue";
+import Album from './Album.vue';
 export default {
   components: {
     Album,
   },
-  props: ["albums", "favorites"],
+  props: {
+    albums: {
+      type: Array,
+      required: true,
+    },
+    favorites: {
+      type: Boolean,
+      default: false,
+    },
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>
