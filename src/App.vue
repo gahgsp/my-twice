@@ -34,19 +34,28 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 export default {
-  name: "app",
+  name: 'app',
   created() {
-    this.$store.dispatch("loadAlbums");
+    this.loadAllAlbums();
   },
   computed: {
+    ...mapGetters({
+      isUserLoggedIn: 'isLoggedIn',
+    }),
     isLoggedIn() {
-      return this.$store.getters.isLoggedIn;
+      return this.isUserLoggedIn;
     },
   },
   methods: {
+    ...mapActions({
+      loadAllAlbums: 'loadAlbums',
+      logOutUser: 'logOut',
+    }),
     logout() {
-      this.$store.dispatch("logOut");
+      this.logOutUser();
     },
   },
 };
@@ -54,7 +63,7 @@ export default {
 
 <style lang="scss">
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

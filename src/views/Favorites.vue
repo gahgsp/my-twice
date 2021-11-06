@@ -18,15 +18,19 @@
 </template>
 
 <script>
-import AlbumList from "@/components/Album/AlbumList.vue";
+import { mapGetters } from 'vuex';
+import AlbumList from '@/components/Album/AlbumList.vue';
 
 export default {
   components: {
     AlbumList,
   },
   computed: {
+    ...mapGetters({
+      storedFavorites: 'favorites',
+    }),
     favorites() {
-      return this.$store.getters.favorites;
+      return this.storedFavorites;
     },
   },
 };

@@ -50,37 +50,47 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
+
 export default {
-  name: "home",
+  name: 'home',
   data() {
     return {
-      username: "",
-      password: "",
+      username: '',
+      password: '',
     };
   },
   computed: {
+    ...mapGetters({
+      currentUserErrorMessage: 'errorMessage',
+    }),
     isFormValid() {
       return this.username && this.password;
     },
     userErrorMessage() {
-      return this.$store.getters.errorMessage;
+      return this.currentUserErrorMessage;
     },
   },
   methods: {
+    ...mapActions({
+      registerUser: 'register',
+      loginUser: 'logIn',
+    }),
     register() {
       const user = {
         username: this.username,
         password: this.password,
         favorites: [],
       };
-      this.$store.dispatch("register", user);
+      this.registerUser(user);
     },
     login() {
       const user = {
         username: this.username,
         password: this.password,
       };
-      this.$store.dispatch("logIn", user);
+      this.loginUser(user);
     },
   },
 };

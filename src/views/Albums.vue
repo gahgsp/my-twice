@@ -5,17 +5,22 @@
 </template>
 
 <script>
-import AlbumList from "@/components/Album/AlbumList.vue";
+import { mapGetters } from 'vuex';
+import AlbumList from '@/components/Album/AlbumList.vue';
 
 export default {
   components: {
     AlbumList,
   },
   computed: {
+    ...mapGetters({
+      storedAlbums: 'albums',
+      storedFavorites: 'favorites',
+    }),
     albums() {
-      return this.$store.getters.albums.filter(
+      return this.storedAlbums.filter(
         (album) =>
-          !this.$store.getters.favorites.find(
+          !this.storedFavorites.find(
             (favorite) => favorite.collectionId === album.collectionId
           )
       );
