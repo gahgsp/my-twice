@@ -1,12 +1,12 @@
 <template>
   <div class="container albums">
-    <AlbumList :albums="albums" />
+    <album-list :albums="albums" />
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import AlbumList from '@/components/Album/AlbumList.vue';
+import AlbumList from '@/components/album/AlbumList.vue';
 
 export default {
   components: {

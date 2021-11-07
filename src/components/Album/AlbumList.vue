@@ -1,7 +1,7 @@
 <template>
   <div class="columns is-multiline">
     <div v-for="album in albums" :key="album.collectionId" class="column is-3">
-      <Album
+      <album
         :album="album"
         :favorite="favorites"
         @add-favorite="onAddFavorite($event)"

@@ -6,7 +6,7 @@
         that you can always add new ones to your favorites list.
       </div>
     </article>
-    <AlbumList :albums="favorites" :favorites="true" v-if="favorites.length" />
+    <album-list :albums="favorites" :favorites="true" v-if="favorites.length" />
     <article class="message is-warning" v-if="!favorites.length">
       <div class="message-body">
         Ohh no! ): <br />
@@ -19,7 +19,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import AlbumList from '@/components/Album/AlbumList.vue';
+import AlbumList from '@/components/album/AlbumList.vue';
 
 export default {
   components: {

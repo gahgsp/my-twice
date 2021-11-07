@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Navigation from './components/shared/Navigation.vue';
+import Navigation from '@/components/shared/Navigation.vue';
 
 export default {
   name: 'app',
