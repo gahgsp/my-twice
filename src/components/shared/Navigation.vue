@@ -1,13 +1,13 @@
 <template>
   <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
     <div class="navbar-menu">
-      <router-link v-if="!isLoggedIn" to="/" class="navbar-item"
+      <router-link v-if="!isUserLoggedIn" to="/" class="navbar-item"
         >Home</router-link
       >
-      <router-link v-if="isLoggedIn" to="/albums" class="navbar-item"
+      <router-link v-if="isUserLoggedIn" to="/albums" class="navbar-item"
         >Albums</router-link
       >
-      <router-link v-if="isLoggedIn" to="/favorites" class="navbar-item"
+      <router-link v-if="isUserLoggedIn" to="/favorites" class="navbar-item"
         >My Favorites</router-link
       >
       <router-link to="/about" class="navbar-item">About</router-link>
@@ -15,7 +15,7 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <button v-if="isLoggedIn" @click="logout" class="button is-link">
+          <button v-if="isUserLoggedIn" @click="logout" class="button is-link">
             Logout
           </button>
         </div>
@@ -33,9 +33,6 @@ export default {
     ...mapGetters({
       isUserLoggedIn: 'isLoggedIn',
     }),
-    isLoggedIn() {
-      return this.isUserLoggedIn;
-    },
   },
   methods: {
     ...mapActions({
